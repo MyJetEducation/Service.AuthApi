@@ -18,9 +18,9 @@ namespace Service.AuthApi
 		/// </summary>
 		public static void SetupSwaggerDocumentation(this IServiceCollection services) => services.AddSwaggerDocument(o =>
 		{
-			o.Title = "MyJetEducation API";
+			o.Title = "MyJetEducation AuthApi";
 			o.GenerateEnumMappingDescription = true;
-
+			o.DocumentName = "auth";
 			o.AddSecurity("Bearer", Enumerable.Empty<string>(),
 				new OpenApiSecurityScheme
 				{

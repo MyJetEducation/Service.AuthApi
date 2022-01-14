@@ -2,12 +2,11 @@
 using System.Net;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NSwag.Annotations;
 using Service.AuthApi.Models;
-using Service.AuthApi.Services;
+using Service.Authorization.Domain.Models;
 using SimpleTrading.ClientApi.Utils;
 
 namespace Service.AuthApi.Controllers
@@ -16,7 +15,8 @@ namespace Service.AuthApi.Controllers
 	[ApiController]
 	[ProducesResponseType(StatusCodes.Status200OK)]
 	[ProducesResponseType(StatusCodes.Status500InternalServerError)]
-	[Route("/api/auth/v1")]
+	[OpenApiTag("Auth", Description = "user authorization")]
+	[Route("/api/v1/auth")]
 	public class AuthController : ControllerBase
 	{
 		private readonly ITokenService _tokenService;

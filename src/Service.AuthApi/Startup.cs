@@ -38,9 +38,15 @@ namespace Service.AuthApi
 			app.BindServicesTree(Assembly.GetExecutingAssembly());
 			app.BindIsAlive();
 			app.UseOpenApi();
-			app.UseSwaggerUi3();
 			app.UseAuthentication();
 			app.UseAuthorization();
+
+			app.UseOpenApi(settings => settings.Path = "/api/v1/{documentName}/swagger/swagger.json");
+			app.UseSwaggerUi3(settings =>
+			{
+				settings.Path = "/api/v1/{documentName}/swagger";
+				settings.DocumentPath = "/api/v1/{documentName}/swagger/swagger.json";
+			});
 
 			app.UseEndpoints(endpoints =>
 			{
