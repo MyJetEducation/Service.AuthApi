@@ -11,7 +11,6 @@ using SimpleTrading.ClientApi.Utils;
 
 namespace Service.AuthApi.Controllers
 {
-	[Authorize]
 	[ApiController]
 	[ProducesResponseType(StatusCodes.Status200OK)]
 	[ProducesResponseType(StatusCodes.Status500InternalServerError)]
