@@ -25,8 +25,5 @@ namespace Service.AuthApi.Settings
 
 		[YamlProperty("AuthApi.UserInfoCrudServiceUrl")]
 		public string UserInfoCrudServiceUrl { get; set; }
-
-		[YamlProperty("AuthApi.RegistrationServiceUrl")]
-		public string RegistrationServiceUrl { get; set; }
 	}
 }
