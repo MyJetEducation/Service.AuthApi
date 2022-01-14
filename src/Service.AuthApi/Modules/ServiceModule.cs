@@ -1,6 +1,5 @@
 ﻿using Autofac;
 using Microsoft.Extensions.Logging;
-using Service.AuthApi.Services;
 using Service.Authorization.Domain;
 using Service.Authorization.Domain.Models;
 using Service.UserInfo.Crud.Client;
@@ -14,7 +13,7 @@ namespace Service.AuthApi.Modules
 		{
 			builder.RegisterUserInfoCrudClient(Program.Settings.UserInfoCrudServiceUrl);
 
-			builder.RegisterType<LoginRequestValidator>().AsImplementedInterfaces();
+			builder.RegisterType<UserDataRequestValidator>().AsImplementedInterfaces();
 
 			builder.Register(context =>
 				new TokenService(

@@ -1,5 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
-using Service.AuthApi.Constants;
+using Service.Core.Domain.Models.Constants;
 
 namespace Service.AuthApi.Models
 {
