@@ -19,6 +19,7 @@ namespace Service.AuthApi
 			services.BindCodeFirstGrpc();
 			services.AddHostedService<ApplicationLifetimeManager>();
 			services.AddMyTelemetry("ED-", Program.Settings.ZipkinUrl);
+			services.AddApplicationInsightsTelemetry();
 			services.SetupSwaggerDocumentation();
 			services.ConfigurateHeaders();
 			services.AddControllers();
