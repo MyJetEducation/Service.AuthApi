@@ -9,7 +9,7 @@ using Microsoft.Extensions.Logging;
 using MyJetWallet.Sdk.Service;
 using MySettingsReader;
 using Service.AuthApi.Settings;
-using Service.Core.Domain.Extensions;
+using Service.Core.Client.Extensions;
 
 namespace Service.AuthApi
 {
