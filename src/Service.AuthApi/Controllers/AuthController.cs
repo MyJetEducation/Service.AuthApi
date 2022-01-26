@@ -6,7 +6,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NSwag.Annotations;
 using Service.AuthApi.Models;
-using Service.Authorization.Domain.Models;
+using Service.Authorization.Client.Models;
+using Service.Authorization.Client.Services;
 using SimpleTrading.ClientApi.Utils;
 
 namespace Service.AuthApi.Controllers

@@ -1,7 +1,6 @@
 ﻿using Autofac;
 using Microsoft.Extensions.Logging;
-using Service.Authorization.Domain;
-using Service.Authorization.Domain.Models;
+using Service.Authorization.Client.Services;
 using Service.UserInfo.Crud.Client;
 using Service.UserInfo.Crud.Grpc;
 
