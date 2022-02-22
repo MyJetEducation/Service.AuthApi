@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using Microsoft.Extensions.Logging;
 using Service.Authorization.Client.Services;
+using Service.Grpc;
 using Service.UserInfo.Crud.Client;
 using Service.UserInfo.Crud.Grpc;
 
@@ -10,13 +11,11 @@ namespace Service.AuthApi.Modules
 	{
 		protected override void Load(ContainerBuilder builder)
 		{
-			builder.RegisterUserInfoCrudClient(Program.Settings.UserInfoCrudServiceUrl);
-
-			builder.RegisterType<UserDataRequestValidator>().AsImplementedInterfaces();
+			builder.RegisterUserInfoCrudClient(Program.Settings.UserInfoCrudServiceUrl, Program.LogFactory.CreateLogger(typeof(UserInfoCrudClientFactory)));
 
 			builder.Register(context =>
 				new TokenService(
-					context.Resolve<IUserInfoService>(),
+					context.Resolve<IGrpcServiceProxy<IUserInfoService>>(),
 					Program.Settings.JwtAudience,
 					Program.JwtSecret,
 					Program.Settings.JwtTokenExpireMinutes,
