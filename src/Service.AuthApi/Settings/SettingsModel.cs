@@ -20,9 +20,6 @@ namespace Service.AuthApi.Settings
 		[YamlProperty("AuthApi.RefreshTokenExpireMinutes")]
 		public int RefreshTokenExpireMinutes { get; set; }
 
-		[YamlProperty("AuthApi.JwtAudience")]
-		public string JwtAudience { get; set; }
-
 		[YamlProperty("AuthApi.UserInfoCrudServiceUrl")]
 		public string UserInfoCrudServiceUrl { get; set; }
 	}
