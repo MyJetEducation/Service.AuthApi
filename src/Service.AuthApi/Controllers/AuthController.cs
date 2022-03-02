@@ -8,6 +8,7 @@ using NSwag.Annotations;
 using Service.AuthApi.Models;
 using Service.Authorization.Client.Models;
 using Service.Authorization.Client.Services;
+using Service.Web;
 using SimpleTrading.ClientApi.Utils;
 
 namespace Service.AuthApi.Controllers

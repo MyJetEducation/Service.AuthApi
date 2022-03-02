@@ -10,9 +10,4 @@
     <PackageReference Include="protobuf-net.Grpc" Version="1.0.152" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\..\src\Service.AuthApi.Client\Service.AuthApi.Client.csproj" />
-    <ProjectReference Include="..\..\src\Service.AuthApi.Grpc\Service.AuthApi.Grpc.csproj" />
-  </ItemGroup>
-
 </Project>
