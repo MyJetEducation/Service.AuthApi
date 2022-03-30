@@ -32,18 +32,17 @@ namespace Service.AuthApi.Controllers
 		public async ValueTask<IActionResult> LoginAsync([FromBody] LoginRequest request)
 		{
 			AuthTokenInfo tokenInfo = await _tokenService.GenerateTokensAsync(request.UserName, HttpContext.GetIp(), request.Password);
-			if (tokenInfo == null)
-				return StatusResponse.Error();
+			if (tokenInfo != null)
+			{
+				if (tokenInfo.IsValid())
+					return DataResponse<TokenInfo>.Ok(tokenInfo);
+				if (tokenInfo.UserNotFound)
+					return StatusResponse.Error(ResponseCode.UserNotFound);
+				if (tokenInfo.InvalidPassword)
+					return StatusResponse.Error(AuthResponseCodes.NotValidPassword);
+			}
 
-			return tokenInfo.IsValid()
-				? DataResponse<TokenInfo>.Ok(tokenInfo)
-				: StatusResponse.Error(
-					tokenInfo.UserNotFound
-						? ResponseCode.UserNotFound
-						: tokenInfo.InvalidPassword
-							? AuthResponseCodes.NotValidPassword
-							: ResponseCode.Fail
-					);
+			return StatusResponse.Error();
 		}
 
 		[AllowAnonymous]
