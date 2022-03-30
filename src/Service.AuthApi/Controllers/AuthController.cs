@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NSwag.Annotations;
+using Service.AuthApi.Constants;
 using Service.AuthApi.Models;
 using Service.Authorization.Client.Models;
 using Service.Authorization.Client.Services;
@@ -30,11 +31,19 @@ namespace Service.AuthApi.Controllers
 		[SwaggerResponse(HttpStatusCode.Unauthorized, null, Description = "Unauthorized")]
 		public async ValueTask<IActionResult> LoginAsync([FromBody] LoginRequest request)
 		{
-			TokenInfo tokenInfo = await _tokenService.GenerateTokensAsync(request.UserName, HttpContext.GetIp(), request.Password);
+			AuthTokenInfo tokenInfo = await _tokenService.GenerateTokensAsync(request.UserName, HttpContext.GetIp(), request.Password);
+			if (tokenInfo == null)
+				return StatusResponse.Error();
 
-			return tokenInfo != null
+			return tokenInfo.IsValid()
 				? DataResponse<TokenInfo>.Ok(tokenInfo)
-				: Unauthorized();
+				: StatusResponse.Error(
+					tokenInfo.UserNotFound
+						? ResponseCode.UserNotFound
+						: tokenInfo.InvalidPassword
+							? AuthResponseCodes.NotValidPassword
+							: ResponseCode.Fail
+					);
 		}
 
 		[AllowAnonymous]
